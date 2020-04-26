@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mac.controller.Controller">
@@ -75,11 +75,11 @@
                      <children>
                         <Label layoutX="49.0" layoutY="52.0" text="Username" />
                         <Label layoutX="49.0" layoutY="88.0" text="Password" />
-                        <PasswordField fx:id="pwdFieldLogin" layoutX="137.0" layoutY="84.0" />
                         <TextField fx:id="txtFieldUsernameLogin" layoutX="137.0" layoutY="48.0" />
-                        <Button fx:id="btnLogin" layoutX="240.0" layoutY="122.0" mnemonicParsing="false" onAction="#loginUser" text="Login" />
+                        <PasswordField fx:id="pwdFieldLogin" layoutX="137.0" layoutY="84.0" />
+                        <Button fx:id="btnLogin" layoutX="267.0" layoutY="124.0" mnemonicParsing="false" onAction="#loginUser" text="Login" />
                         <TextField fx:id="txtFieldPwdLogin" layoutX="137.0" layoutY="84.0" visible="false" />
-                        <Button fx:id="btnShowLogin" layoutX="310.0" layoutY="84.0" mnemonicParsing="false" onAction="#showPasswordLogin" text="Show" />
+                        <Button fx:id="btnShowLogin" layoutX="343.0" layoutY="84.0" mnemonicParsing="false" onAction="#showPasswordLogin" text="Show" />
                      </children>
                   </AnchorPane>
             </content>
@@ -113,8 +113,8 @@
             </Tab>
             <Tab fx:id="tabTasks" onSelectionChanged="#loadTaskList" text="Task list">
                <content>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
+                  <SplitPane dividerPositions="0.5">
+                     <items>
                         <ScrollPane>
                            <content>
                               <VBox fx:id="vBoxTaskList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="508.0" prefWidth="325.0" />
@@ -125,8 +125,8 @@
                               <VBox fx:id="vBoxTaskListAllocated" prefHeight="508.0" prefWidth="303.0" />
                            </content>
                         </ScrollPane>
-                     </children>
-                  </HBox>
+                     </items>
+                  </SplitPane>
                </content></Tab>
         </tabs>
       </TabPane>

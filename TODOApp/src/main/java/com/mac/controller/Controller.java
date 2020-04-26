@@ -246,6 +246,7 @@ public class Controller {
         for (final Task task:tasks
              ) {
             CheckBox checkBox = new CheckBox();
+            checkBox.setWrapText(false);
 
             if(task.getUser()!=null) {
                 checkBox.setText(task.getId() + ". "
