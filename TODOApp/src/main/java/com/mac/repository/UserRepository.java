@@ -45,12 +45,21 @@ public class UserRepository implements CrudRepository<User, Integer> {
     }
 
     public User findByUsername (String username) {
-        User user = (User)
-        entityManager
-                .createQuery("SELECT u FROM User u WHERE u.username =: username")
-                .setParameter("Username", username)
-                .getResultList().get(0);
-        return user;
+
+        try {
+            User user = (User)
+                    entityManager
+                            .createQuery("SELECT u FROM User u WHERE u.username =: username")
+                            .setParameter("username", username)
+                            .getResultList().get(0);
+            return user;
+
+        }
+        catch (Exception ex) {
+
+        }
+
+        return null;
 
 //        int id = entityManager
 //                .createQuery("SELECT u FROM User u WHERE u.username =:username")

@@ -1,41 +1,36 @@
 package com.mac.model;
 
-import javax.persistence.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Data //for getter and setter
+@NoArgsConstructor // for no arg constructor
 @Entity
-@Table(name = "user") // redundant
+@Table(name = "users") // redundant
 public class User {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY) // Auto_Increment
-    private int id;
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto_Increment
+    private int user_id;
     private String username;
     private String password;
 
-    public User() {
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
-    public int getId() {
-        return id;
-    }
+    @ManyToMany
+    @JoinTable(name = "working_project",
+            joinColumns = @JoinColumn(name = "user_id"), //current entity -> user
 
-    public void setId(int id) {
-        this.id = id;
-    }
+            inverseJoinColumns = @JoinColumn(name = "project_id")) // "foreign" entity -> project
+    private List<Project> projects;
 
-    public String getUsername() {
-        return username;
-    }
+    @OneToOne(mappedBy = "user")
+    private PendingUser pendingUser;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
