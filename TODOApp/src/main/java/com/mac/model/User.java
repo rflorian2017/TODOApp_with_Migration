@@ -33,4 +33,8 @@ public class User {
     @OneToOne(mappedBy = "user")
     private PendingUser pendingUser;
 
+    public String toString() {
+        return this.username;
+    }
+
 }
